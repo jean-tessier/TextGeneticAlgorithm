@@ -1,0 +1,6 @@
+﻿1. Initialize
+2. Evaluation
+3. Selection
+4. Crossover
+5. Mutation
+6. Repeat
