@@ -9,25 +9,30 @@ namespace TextGA
     public interface IReadOnlyIndividual
     {
         string Genes { get; }
+        double Fitness { get; }
     }
 
     public class Individual : IReadOnlyIndividual
     {
         private string _genes;
+        private double _fitness;
         private static IReadOnlyConfigClass _config = ConfigClass.getInstance();
         private static Random _rnd = new Random();
 
         public Individual()
         {
             generateGenes(_config.Goal.Length);
+            _fitness = -1.0d;
         }
         public Individual(string genes)
         {
             _genes = genes;
+            _fitness = -1.0d;
         }
         public Individual(int size)
         {
             generateGenes(size);
+            _fitness = -1.0d;
         }
 
         private void generateGenes(int size)
@@ -42,6 +47,12 @@ namespace TextGA
         public string Genes
         {
             get { return _genes; }
+        }
+
+        public double Fitness
+        {
+            get { return _fitness; }
+            set { _fitness = value; }
         }
 
         public override string ToString()

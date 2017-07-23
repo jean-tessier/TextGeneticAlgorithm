@@ -17,6 +17,7 @@ namespace TextGATest
             foreach ( IReadOnlyIndividual i in test.ToList() )
             {
                 Assert.AreNotEqual(null, i);
+                Assert.AreEqual(-1.0d, i.Fitness);
             }
         }
 
@@ -26,7 +27,7 @@ namespace TextGATest
             Population test = new Population();
             Individual i = new Individual("Hello World!");
             test.AddIndividual(i);
-            Assert.AreEqual( i, test.GetIndividual(0) );
+            Assert.AreEqual(i, test.GetIndividual(0));
         }
     }
 
@@ -42,6 +43,7 @@ namespace TextGATest
             //act
             //assert
             Assert.AreEqual(len, test.Genes.Length);
+            Assert.AreEqual(-1.0d, test.Fitness);
         }
     }
 
