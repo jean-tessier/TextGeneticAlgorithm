@@ -17,7 +17,7 @@ namespace TextGA
         private string _genes;
         private double _fitness;
         private static IReadOnlyConfigClass _config = ConfigClass.getInstance();
-        private static Random _rnd = new Random();
+        private static Random _rnd = _config.RNG;
 
         public Individual()
         {

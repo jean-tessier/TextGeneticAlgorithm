@@ -29,6 +29,19 @@ namespace TextGATest
             test.AddIndividual(i);
             Assert.AreEqual(i, test.GetIndividual(0));
         }
+
+        [TestMethod]
+        public void PopulationSelectAtRandom()
+        {
+            //arrange
+            Population test = new Population();
+            test.Populate(10);
+            int select = 2;
+            //act
+            Population subset = test.SelectIndividualsAtRandom(select);
+            //assert
+            Assert.AreEqual(select, subset.Count);
+        }
     }
 
     [TestClass]
