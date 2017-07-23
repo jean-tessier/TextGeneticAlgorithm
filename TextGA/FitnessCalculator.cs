@@ -8,6 +8,7 @@ namespace TextGA
 {
     public interface IReadOnlyFitnessCalculator
     {
+        void CalcFitness(IReadOnlyPopulation pop);
         double CalcFitness(IReadOnlyIndividual indiv);
         double CalcFitness(IReadOnlyIndividual indiv, IReadOnlyIndividual goal);
     }
@@ -25,6 +26,14 @@ namespace TextGA
             }
 
             return _instance;
+        }
+
+        public void CalcFitness(IReadOnlyPopulation pop)
+        {
+            foreach(Individual i in pop)
+            {
+                i.Fitness = CalcFitness(i);
+            }
         }
 
         public double CalcFitness(IReadOnlyIndividual indiv)

@@ -10,7 +10,7 @@ namespace TextGA
     public interface IReadOnlyPopulation : IEnumerable<Individual>
     {
         Individual GetIndividual(int idx);
-        List<Individual> ToList();
+        int Count { get; }
     }
     public class Population : IReadOnlyPopulation
     {
@@ -52,12 +52,17 @@ namespace TextGA
 
         public IEnumerator<Individual> GetEnumerator()
         {
-            return (IEnumerator<Individual>)_pop;
+            return (IEnumerator<Individual>)_pop.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return (IEnumerator)_pop;
+            return GetEnumerator();
+        }
+
+        public int Count
+        {
+            get { return _pop.Count; }
         }
     }
 }

@@ -83,5 +83,21 @@ namespace TextGATest
             Assert.AreEqual(1.0d, fitness);
             Assert.AreEqual(0.5d, halfFitness);
         }
+
+        [TestMethod]
+        public void PopFitnessCalculationTest()
+        {
+            //arrange
+            IReadOnlyFitnessCalculator test = FitnessCalculator.getInstance();
+            Population pop = new Population();
+            pop.Populate(10);
+            //act
+            test.CalcFitness(pop);
+            //assert
+            foreach(Individual i in pop)
+            {
+                Assert.AreNotEqual(-1.0d, i.Fitness);
+            }
+        }
     }
 }
