@@ -11,6 +11,8 @@ namespace TextGA
         static void Main(string[] args)
         {
             IReadOnlyFitnessCalculator calc = FitnessCalculator.getInstance();
+            ConfigClass config = ConfigClass.getInstance();
+            const int TOURNEY_SIZE = 10;
             //1. Initialize
             Population p = new Population(true);
 
@@ -20,23 +22,24 @@ namespace TextGA
             // TODO: DECIDE ON IMPLEMENTING SORT CODE
                 // OPTIONALLY WE CAN JUST SEARCH FOR MOST FIT, NO SORTS
 
-            //3. Reproduce (and create new 'generation' -- population)
+            //3. Reproduce (and create new 'generation' -- population); each generation will make a new generation of equivalent size (for now)
+            for(int i = 0; i < config.PopSize; ++i)
+            {
                 //1. Select
                 // TODO: DECIDE ON SELECTION IMPLEMENTATION
                 // CONSIDER: Pick a pair from ten competitors, using fitness as a scalar, to reproduce (can't be the same!)
-                //2. Crossover
+                // CONSIDER: HOW WILL WE DO THIS?
+                Population tournamentPop = p.SelectIndividualsAtRandom(TOURNEY_SIZE);
+                //2. Crossover;
                 // TODO: IMPLEMENT CROSSOVER
                 //3. Mutate
                 // TODO: IMPLEMENT MUTATE
                 //4. Repeat
-
-            //4. Repeat with new generation
-            foreach(Individual i in p)
-            {
-                Console.WriteLine("{0} | {1}", i, i.Fitness);
             }
 
-            Console.ReadKey();
+            //4. Repeat with new generation
+
+            //Console.ReadKey();
         }
     }
 }

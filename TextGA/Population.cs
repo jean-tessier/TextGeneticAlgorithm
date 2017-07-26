@@ -62,6 +62,57 @@ namespace TextGA
             return subset;
         }
 
+        // Select, weighted by fitness
+        // Preconditions: numToSelect <= Count
+        // Postconditions: A new Population that is a subset of this Population is created containing <numToSelect> elements
+        public Population SelectIndividualsAtRandomWeighted(int numToSelect)
+        {
+            // We will use this to weight the random selection by adding index numbers multiple times to select from this list
+            // These index numbers will select the Individual
+            // This way we don't modify the Population
+            List<int> weightedSelectionPool = new List<int>();
+            // We track how fit each individual is relative to the others
+            double totalFitness = 0d;
+            int iter = 0;
+            // Get total fitness
+            foreach(IReadOnlyIndividual i in this)
+            {
+                totalFitness += i.Fitness;
+
+                // We'll need this for later; happens to be a convenient location
+                weightedSelectionPool.Add(iter);
+                ++iter;
+            }
+
+            // Get percentage of total fitness for each Individual (minimum 0.1% to 1% area)
+            iter = 0;
+            foreach(IReadOnlyIndividual i in this)
+            {
+                double relativeFitness = i.Fitness / totalFitness;
+                int instances = (int) ( Math.Ceiling(this.Count * relativeFitness) ) - 1;
+
+                // this will weight the selections appropriately using the Individuals' indices
+                for (int j = 0; j < instances; ++j)
+                {
+                    weightedSelectionPool.Add(iter);
+                }
+                ++iter;
+            }
+
+            // "Roll" for selection based on aforementioned percentages and select accordingly
+            Population subset = new Population();
+            IReadOnlyConfigClass config = ConfigClass.getInstance();
+            for(int i = 0; i < numToSelect; ++i)
+            {
+                // roll
+                int randIndex = config.RNG.Next(0, weightedSelectionPool.Count);
+                // select
+                subset.AddIndividual( this.GetIndividual(randIndex) );
+            }
+
+            return subset;
+        }
+
         public List<Individual> ToList()
         {
             return _pop;

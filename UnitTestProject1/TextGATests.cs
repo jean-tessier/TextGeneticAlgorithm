@@ -42,6 +42,19 @@ namespace TextGATest
             //assert
             Assert.AreEqual(select, subset.Count);
         }
+
+        [TestMethod]
+        public void PopulationSelectAtRandomWeighted()
+        {
+            //arrange
+            Population test = new Population();
+            test.Populate(100);
+            int select = 10;
+            //act
+            Population subset = test.SelectIndividualsAtRandomWeighted(select);
+            //assert
+            Assert.AreEqual(select, subset.Count);
+        }
     }
 
     [TestClass]
