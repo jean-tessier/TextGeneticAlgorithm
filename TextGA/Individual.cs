@@ -56,6 +56,23 @@ namespace TextGA
             return child;
         }
 
+        public void mutate()
+        {
+            double randDbl;
+            char[] strArray = this.Genes.ToCharArray();
+
+            for(int i = 0; i < this.Genes.Length; ++i)
+            {
+                randDbl = _config.RNG.NextDouble();
+                if(randDbl <= _config.MutationRate)
+                {
+                    strArray[i] = (char)_config.RNG.Next(32, 127);
+                }
+            }
+
+            this._genes = new string(strArray);
+        }
+
         public string Genes
         {
             get { return _genes; }

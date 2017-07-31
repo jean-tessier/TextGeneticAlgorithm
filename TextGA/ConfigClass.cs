@@ -11,14 +11,17 @@ namespace TextGA
         string Goal { get; }
         int PopSize { get; }
         Random RNG { get; }
+        double MutationRate { get; }
     }
 
     public class ConfigClass : IReadOnlyConfigClass
     {
         private static string _defaultGoal = "Hello World!";
         private static int _popSize = 500;
+        private static double _mutationRate = 0.01d;
         private static Random _rnd;
         private static ConfigClass _instance = null;
+
         private ConfigClass()
         {
             _rnd = new Random();
@@ -45,6 +48,10 @@ namespace TextGA
         public Random RNG
         {
             get { return _rnd; }
+        }
+        public double MutationRate
+        {
+            get { return _mutationRate; }
         }
     }
 }

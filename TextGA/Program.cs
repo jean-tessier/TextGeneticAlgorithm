@@ -38,15 +38,12 @@ namespace TextGA
             for (int i = 0; i < config.PopSize; ++i)
             {
                 //1. Select
-                // TODO: DECIDE ON SELECTION IMPLEMENTATION
-                // CONSIDER: Pick a pair from ten competitors, using fitness as a scalar, to reproduce (can't be the same!)
-                // CONSIDER: HOW WILL WE DO THIS?
                 Population tournamentPop = p.SelectIndividualsAtRandom(TOURNEY_SIZE);
-                Population partners = p.SelectIndividualsAtRandomWeighted(tournamentPop.Count);
+                Population partners = p.SelectIndividualsAtRandomWeighted(2);
                 //2. Crossover;
-                // TODO: IMPLEMENT CROSSOVER -> Individual?
+                Individual child = partners.GetIndividual(0).crossover(partners.GetIndividual(1));
                 //3. Mutate
-                // TODO: IMPLEMENT MUTATE
+                child.mutate();
                 //4. Repeat
             }
 
