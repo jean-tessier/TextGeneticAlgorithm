@@ -10,6 +10,7 @@ namespace TextGA
     {
         string Genes { get; }
         double Fitness { get; }
+        Individual crossover(IReadOnlyIndividual i);
     }
 
     public class Individual : IReadOnlyIndividual
@@ -42,6 +43,17 @@ namespace TextGA
             {
                 _genes = _genes.Insert(i, Char.ToString((char)_rnd.Next(32, 127)));
             }
+        }
+
+        public Individual crossover(IReadOnlyIndividual i)
+        {
+            int randInt = _rnd.Next(0,this.Genes.Length);
+            string lhs = this.Genes.Substring(0, randInt);
+            string rhs = i.Genes.Substring(randInt);
+
+            Individual child = new Individual(lhs+rhs);
+
+            return child;
         }
 
         public string Genes

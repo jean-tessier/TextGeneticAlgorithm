@@ -71,6 +71,22 @@ namespace TextGATest
             Assert.AreEqual(len, test.Genes.Length);
             Assert.AreEqual(-1.0d, test.Fitness);
         }
+
+        [TestMethod]
+        public void CrossoverTest()
+        {
+            //arrange
+            int len = 10;
+            Individual a = new Individual(len);
+            Individual b = new Individual(len);
+            //act
+            Individual c = a.crossover(b);
+            //assert
+            for(int i = 0; i < c.Genes.Length; ++i)
+            {
+                Assert.IsTrue( (c.Genes[i] == a.Genes[i]) || (c.Genes[i] == b.Genes[i]) );
+            }
+        }
     }
 
     [TestClass]
