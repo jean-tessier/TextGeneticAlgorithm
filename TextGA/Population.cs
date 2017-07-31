@@ -107,7 +107,7 @@ namespace TextGA
                 // roll
                 int randIndex = config.RNG.Next(0, weightedSelectionPool.Count);
                 // select
-                subset.AddIndividual( this.GetIndividual(randIndex) );
+                subset.AddIndividual( this.GetIndividual(weightedSelectionPool[randIndex]) );
             }
 
             return subset;

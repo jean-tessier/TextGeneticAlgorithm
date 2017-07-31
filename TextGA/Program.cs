@@ -21,7 +21,17 @@ namespace TextGA
             
             //4. Repeat with new generation
 
-            //Console.ReadKey();
+            while(Console.ReadKey().KeyChar != 'x')
+            {
+                p = GenerationStep(p);
+
+                foreach(IReadOnlyIndividual i in p)
+                {
+                    Console.WriteLine(i);
+                }
+
+                Console.WriteLine("Continue to next generation? (Press x to exit)");
+            }
         }
 
         static Population GenerationStep(Population p)
@@ -44,6 +54,8 @@ namespace TextGA
                 Individual child = partners.GetIndividual(0).crossover(partners.GetIndividual(1));
                 //3. Mutate
                 child.mutate();
+                // Add child to new generation
+                nextGeneration.AddIndividual(child);
                 //4. Repeat
             }
 
