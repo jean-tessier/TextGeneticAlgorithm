@@ -26,12 +26,12 @@ we can find efficient solutions to complex problems quickly and effectively.
     case, fitness is determined by how many characters match the specified goal
     string.
 - Key Methods:
-  - ***Crossover(Individual i)***: This function is the "breeding" function. This
+  - **Crossover(Individual i)**: This function is the "breeding" function. This
     merges the genes of two Individuals by randomly selecting a "center" of the
     genes, and giving the child Individual the portions of the genes of the two
-    Individuals. Along with ***mutate()***, this is the engine of the algorithm.
-  - ***Mutate()***: This function provides the entropy that allows the algorithm
+    Individuals. Along with **mutate()**, this is the engine of the algorithm.
+  - **Mutate()**: This function provides the entropy that allows the algorithm
     to progress. Most mutations will be bad, but these will not be rewarded by
     an increase in fitness as good mutations will; this means good mutations are
-    more likely to persist. Along with ***crossover()***, this is the engine of
+    more likely to persist. Along with **crossover()**, this is the engine of
     the algorithm.
