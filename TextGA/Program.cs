@@ -29,7 +29,6 @@ namespace TextGA
                 {
                     Console.WriteLine(i);
                 }
-
                 Console.WriteLine("Continue to next generation? (Press x to exit)");
             }
         }
