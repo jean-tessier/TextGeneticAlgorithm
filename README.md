@@ -1,4 +1,4 @@
-# TextGeneticAlgorithm
+# Text Genetic Algorithm
 A Simple Genetic Algorithm, implemented in C#, exemplifying the abilities of Genetic Algorithms. The goal of this project is to refresh my memory of my original genetic algorithm project, which was implemented in Java, while learning a new programming language and implementing new techniques acquired through my years of education.
 
 ## Overview
