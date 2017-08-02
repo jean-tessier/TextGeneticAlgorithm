@@ -23,9 +23,9 @@ Rather than choosing breeding pairs from the population as a whole, I select a s
 #### Individual
 - Represents a single member of a population. 
 - _**Key Fields**_:
-  - Genes: Contains the "genetic" information about the Individual. In this
+  - **Genes**: Contains the "genetic" information about the Individual. In this
     case, the genes are represented by a string of characters.
-  - Fitness: How effective this Individual is at achieving its goal. In this
+  - **Fitness**: How effective this Individual is at achieving its goal. In this
     case, fitness is determined by how many characters match the specified goal
     string.
 - _**Key Methods**_:
@@ -42,7 +42,7 @@ Rather than choosing breeding pairs from the population as a whole, I select a s
 #### Population
 - Represents a group of Indiviudals -- primarily used to represent one generation of Individuals
 - _**Key Fields**_:
-  - Pop: Contains each of the individuals in the population. Using a dynamically sized data structure allows for simplicity, but implementing this as an array would quite likely improve runtime.
+  - **Pop**: Contains each of the individuals in the population. Using a dynamically sized data structure allows for simplicity, but implementing this as an array would quite likely improve runtime.
 - _**Key Methods**_:
   - **SelectIndividualsAtRandom(int numToSelect)**: This function returns a random subset of Individuals from the Population. This is used primarily when selecting the "tournament pool" -- the subset of the Population that will compete for breeding privileges.
   - **SelectIndividualsAtRandomWeighted(int numToSelect)**: This function returns a weighted-random subset of Individuals from the Population using fitness as the weight. This is primarily used to select the "victors" from the tournament pool.
