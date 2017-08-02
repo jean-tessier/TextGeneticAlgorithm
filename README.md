@@ -1,7 +1,7 @@
 # Text Genetic Algorithm
 A Simple Genetic Algorithm, implemented in C#, exemplifying the abilities of Genetic Algorithms. The goal of this project is to refresh my memory of my original genetic algorithm project, which was implemented in Java, while learning a new programming language and implementing new techniques acquired through my years of education.
 
-## 1. Genetic Algorithms
+## 1. Introduction: Genetic Algorithms
 Biological evolution has proven itself to be able to accomplish the seemingly impossible. For the problem of genetic survival, not only are there
 innumerable "solutions", but infinitely-many subtle variables impacting the viability of said solutions. 
 
