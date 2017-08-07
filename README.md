@@ -18,6 +18,10 @@ I chose to implement this algorithm around "optimizing" a string for simplicity'
 
 Rather than choosing breeding pairs from the population as a whole, I select a subset of Individuals from the Population, then select a breeeding pair from this subset. I was interested in any difference this may make from my previous implementation utilizing the former; I now realize it would be simpler to compare if I were to try both strategies from this implementation to find which runtime is faster.
 
+Where possible, I tried to translate "const-correctness" from C/C++ development to this project; to pass references safely, I used "IReadOnly" interfaces where possible to defend against poorly written code (code that would change an object where no change should occur), ensuring the information required could be found but no changes could be made.
+
+For this project, I challenged myself to utilize Test-Driven-Development, creating unit tests for each critical function and implementing the latter such that the tests would succeed accordingly. I found that, when going back and modifying my implementations, these unit tests often came in handy to reduce the amount of time I spent debugging.
+
 ### Classes
 
 #### Individual
@@ -42,7 +46,18 @@ Rather than choosing breeding pairs from the population as a whole, I select a s
 #### Population
 - Represents a group of Indiviudals -- primarily used to represent one generation of Individuals
 - _**Key Fields**_:
-  - **Pop**: Contains each of the individuals in the population. Using a dynamically sized data structure allows for simplicity, but implementing this as an array would quite likely improve runtime.
+  - **Pop**: Contains each of the individuals in the population. Using a dynamically sized data structure allows for simplicity, but implementing this as an array would quite likely improve runtime
 - _**Key Methods**_:
-  - **SelectIndividualsAtRandom(int numToSelect)**: This function returns a random subset of Individuals from the Population. This is used primarily when selecting the "tournament pool" -- the subset of the Population that will compete for breeding privileges.
-  - **SelectIndividualsAtRandomWeighted(int numToSelect)**: This function returns a weighted-random subset of Individuals from the Population using fitness as the weight. This is primarily used to select the "victors" from the tournament pool.
+  - **SelectIndividualsAtRandom(int numToSelect)**: This function returns a random subset of Individuals from the Population. This is used primarily when selecting the "tournament pool" -- the subset of the Population that will compete for breeding privileges
+  - **SelectIndividualsAtRandomWeighted(int numToSelect)**: This function returns a weighted-random subset of Individuals from the Population using fitness as the weight. This is primarily used to select the "victors" from the tournament pool
+  
+#### Fitness Calculator
+- Calculates the fitness of a Population or Individual in relation to the predefined Goal
+- Implemented as a singleton to reduce memory usage
+- _**Key Methods**_:
+  - **CalcFitness(IReadOnlyPopulation pop)**: Calculates the fitness for each member of the population and appropriately caches the calculated fitness within the Individual
+  - **CalcFitness(IReadOnlyIndividual indiv)**: Calculates the fitness for a single Individual in relation to the predefined Goal. This function is where the fitness calculation is implemented and is essential to the core of the program
+
+#### ConfigClass
+- Singleton class containing the configuration for the program, providing a central point of access for global variables
+- Though some would argue this is not an appropriate use for a Singleton class and should not implemented this way, I found that this was the most sensible implementation long-term: I intend to use this class to parse a configuration file in the long run.
